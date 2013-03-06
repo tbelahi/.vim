@@ -197,3 +197,27 @@ let g:pydiction_menu_height = 10
 " mkdir -p ~/.vim/ftplugin
 " wget -O ~/.vim/ftplugin/python_editing.vim http://www.vim.org/scripts/download_script.php?src_id=5492
 ""set nofoldenable
+
+"" Frotran Specific""
+
+function SaneFortran (foo) 
+  if a:foo == 'f95' 
+    let g:fortran_have_tabs=1 
+    let g:fortran_more_precise=1 
+    let b:fortran_free_source=1 
+    let b:fortran_fixed_source=0 
+    let b:fortran_dialect="f95" 
+    let b:fortran_do_enddo=1 
+    source ~/.vim/fortran_indent.vim
+  else 
+      unlet! fortran_free_source 
+  endif 
+  return 0 
+endfunction 
+
+autocmd BufReadPre *.f90 call SaneFortran ('f95')
+syntax on
+filetype indent on
+
+
+
