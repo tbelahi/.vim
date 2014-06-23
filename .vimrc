@@ -2,7 +2,7 @@
 " Sample .vimrc file by Martin Brochhaus
 " Presented at PyCon APAC 2012
 " by Thomas Belahi
-
+            
 
 " Automatic reloading of .vimrc
 autocmd! bufwritepost .vimrc source %
@@ -94,7 +94,7 @@ set number  " show line numbers
 set tw=79   " width of document (used by gd)
 set nowrap  " don't automatically wrap on load
 set fo-=t   " don't automatically wrap text when typing
-set colorcolumn=80
+"set colorcolumn=80
 highlight ColorColumn ctermbg=233
 
 
@@ -144,8 +144,9 @@ call pathogen#infect()
 
 " Settings for vim-powerline
 " cd ~/.vim/bundle
-" git clone git://github.com/Lokaltog/vim-powerline.git
+" git clone git://github.com/Lokaltog/powerline.git
 set laststatus=2
+set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 
 
 " Settings for ctrlp
@@ -200,24 +201,27 @@ let g:pydiction_menu_height = 10
 
 "" Frotran Specific""
 
-function SaneFortran (foo) 
-  if a:foo == 'f95' 
-    let g:fortran_have_tabs=1 
-    let g:fortran_more_precise=1 
-    let b:fortran_free_source=1 
-    let b:fortran_fixed_source=0 
-    let b:fortran_dialect="f95" 
-    let b:fortran_do_enddo=1 
-    source ~/.vim/fortran_indent.vim
-  else 
-      unlet! fortran_free_source 
-  endif 
-  return 0 
-endfunction 
-
-autocmd BufReadPre *.f90 call SaneFortran ('f95')
+"function SaneFortran (foo) 
+"  if a:foo == 'f95' 
+"    let g:fortran_have_tabs=1 
+"    let g:fortran_more_precise=1 
+"    let b:fortran_free_source=1 
+"    let b:fortran_fixed_source=0 
+"    let b:fortran_dialect="f95" 
+"    let b:fortran_do_enddo=1 
+"    source ~/.vim/fortran_indent.vim
+"  else 
+"      unlet! fortran_free_source 
+"  endif 
+"  return 0 
+"endfunction 
+"
+"autocmd BufReadPre *.f90 call SaneFortran ('f95')
 syntax on
 filetype indent on
 
-
+"enable python syntax for SConstruct files
+au BufRead,BufNewFile SConstruct setfiletype python
+ 
+syntax enable
 
