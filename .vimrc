@@ -2,7 +2,6 @@
 " Sample .vimrc file by Martin Brochhaus
 " Presented at PyCon APAC 2012
 " by Thomas Belahi
-            
 
 " Automatic reloading of .vimrc
 autocmd! bufwritepost .vimrc source %
@@ -74,13 +73,17 @@ set bs=2     " make backspace behave like normal again
 autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 au InsertLeave * match ExtraWhitespace /\s\+$/
 
+" set font
+"set guifont=Source Code Pro for Powerline\ 12
 
 " Color scheme
 " mkdir -p ~/.vim/colors && cd ~/.vim/colors
 " wget -O wombat256mod.vim http://www.vim.org/scripts/download_script.php?src_id=13400
 set t_Co=256
 color wombat256mod
-
+"color cobalt
+"set background=dark
+"colorscheme solarized
 
 " Enable syntax highlighting
 " You need to reload this file for the change to apply
@@ -95,7 +98,7 @@ set tw=79   " width of document (used by gd)
 set nowrap  " don't automatically wrap on load
 set fo-=t   " don't automatically wrap text when typing
 "set colorcolumn=80
-highlight ColorColumn ctermbg=233
+"highlight ColorColumn ctermbg=233
 
 
 " easier formatting of paragraphs
@@ -136,6 +139,13 @@ set noic
 " Now you can install any plugin into a .vim/bundle/plugin-name/ folder
 call pathogen#infect()
 
+if has('gui_running')
+    set background=dark
+    colorscheme solarized
+else
+    set t_Co=256
+    color wombat256mod
+endif
 
 " ============================================================================
 " Python IDE Setup
@@ -145,8 +155,8 @@ call pathogen#infect()
 " Settings for vim-powerline
 " cd ~/.vim/bundle
 " git clone git://github.com/Lokaltog/powerline.git
-set laststatus=2
 set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
+set laststatus=2
 
 
 " Settings for ctrlp
@@ -160,7 +170,7 @@ set wildignore+=*/coverage/*
 " Settings for Pydiction
 " cd ~/.vim/bundle
 " git clone https://github.com/vim-scripts/Pydiction.git
-let g:pydiction_location = '/Users/thomasbelahi/.vim/bundle/Pydiction/complete-dict'
+let g:pydiction_location = '~/.vim/bundle/Pydiction/complete-dict'
 let g:pydiction_menu_height = 10
 
 " Settings for python-mode
@@ -201,27 +211,28 @@ let g:pydiction_menu_height = 10
 
 "" Frotran Specific""
 
-"function SaneFortran (foo) 
-"  if a:foo == 'f95' 
-"    let g:fortran_have_tabs=1 
-"    let g:fortran_more_precise=1 
-"    let b:fortran_free_source=1 
-"    let b:fortran_fixed_source=0 
-"    let b:fortran_dialect="f95" 
-"    let b:fortran_do_enddo=1 
-"    source ~/.vim/fortran_indent.vim
-"  else 
-"      unlet! fortran_free_source 
-"  endif 
-"  return 0 
-"endfunction 
-"
-"autocmd BufReadPre *.f90 call SaneFortran ('f95')
+""function SaneFortran (foo)
+""  if a:foo == 'f95'
+""    let g:fortran_have_tabs=1
+""    let g:fortran_more_precise=1
+""    let b:fortran_free_source=1
+""    let b:fortran_fixed_source=0
+""    let b:fortran_dialect="f95"
+""    let b:fortran_do_enddo=1
+""    source ~/.vim/fortran_indent.vim
+""  else
+""      unlet! fortran_free_source
+""  endif
+""  return 0
+""endfunction
+""
+""autocmd BufReadPre *.f90 call SaneFortran ('f95')
 syntax on
 filetype indent on
 
-"enable python syntax for SConstruct files
+" SConstruct file syntax highliting
 au BufRead,BufNewFile SConstruct setfiletype python
- 
+
 syntax enable
+
 
