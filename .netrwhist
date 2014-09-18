@@ -1,0 +1,5 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/Users/thomasbelahi/Documents/tbelahi.github.io/source'
+let g:netrw_dirhist_2='/Users/thomasbelahi/madagascar-1.6/book/data/chevron/geom'
+let g:netrw_dirhist_3='/Users/thomasbelahi/Documents/IPGP/thomas_visco_sources/src/mpi_version'
