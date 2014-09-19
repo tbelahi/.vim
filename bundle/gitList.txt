@@ -1,0 +1,1 @@
+list all the git repo needed to download the various plugin listed here
