@@ -26,3 +26,9 @@ git clone https://github.com/derekwyatt/vim-scala.git
 
 #fortran.vim
 # already tracked by git
+
+# clojure static vim
+git clone https://github.com/guns/vim-clojure-static.git
+
+#fireplace.vim repl for clojure in vim
+git clone git://github.com/tpope/vim-fireplace.git
